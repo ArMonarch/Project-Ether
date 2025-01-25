@@ -1,1 +1,7 @@
-fn multiply(a  b c) a*b*c;
+fn multiply(num1 num2 num3)
+    if num1 < num2 then
+        num1*num2
+    else
+        num3;
+
+extern cos(value);

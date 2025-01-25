@@ -1,9 +1,11 @@
 #include <iostream>
 
 extern "C" {
-    double mul(double, double, double);
+    double multiply(double, double, double);
+    double cos(double);
 }
 
 int main(){
-    std::cout<<mul(1.0,3.0,500.0);
+    std::cout<<multiply(11.0,3.0,500.0)<<std::endl;
+    std::cout<<cos(1000000.00)<<std::endl;
 }
