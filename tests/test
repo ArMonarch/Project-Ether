@@ -1,1 +1,1 @@
-fn multiply(a  b c) a*b*c;
+fn mul(a  b c) a*b*c;

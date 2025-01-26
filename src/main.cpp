@@ -1119,7 +1119,8 @@ static void InitializeModuleAndPassManager() {
 static void HandleDefinition() {
   if (auto FnAST = ParseDefinition()) {
     if (auto *FnIR = FnAST->codegen()) {
-      fprintf(stderr, "Read function definition:");
+      // fprintf(stderr, "Read function definition:");
+      fprintf(stderr, "Read function:\n");
       FnIR->print(errs());
       fprintf(stderr, "\n");
     }
@@ -1210,7 +1211,10 @@ int main() {
   BinopPrecedence['*'] = 40; // highest.
 
   // Prime the first token.
-  fprintf(stderr, "ready> ");
+  fprintf(stderr, "Etherc v0.1.1 (unstable)\n");
+  fprintf(stderr, "Exit using <Ctrl-d> or <Ctrl-c>\n");
+  fprintf(stderr, "\n=> ");
+  // fprintf(stderr, "ready> ");
   getNextToken();
 
   InitializeModuleAndPassManager();

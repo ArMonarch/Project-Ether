@@ -65,8 +65,8 @@ enum Token {
   tok_var = -13
 };
 
-static std::string IdentifierStr; // Filled in if tok_identifier
-static double NumVal;             // Filled in if tok_number
+static std::string IdentifierStr;   // Filled in if tok_identifier
+static double NumVal;               // Filled in if tok_number
 
 /// gettok - Return the next token from standard input.
 static int gettok() {
@@ -81,7 +81,7 @@ static int gettok() {
     while (isalnum((LastChar = getchar())))
       IdentifierStr += LastChar;
 
-    if (IdentifierStr == "def")
+    if (IdentifierStr == "fn")
       return tok_def;
     if (IdentifierStr == "extern")
       return tok_extern;
@@ -1119,9 +1119,9 @@ static void InitializeModuleAndPassManager() {
 static void HandleDefinition() {
   if (auto FnAST = ParseDefinition()) {
     if (auto *FnIR = FnAST->codegen()) {
-      fprintf(stderr, "Read function definition:");
-      FnIR->print(errs());
-      fprintf(stderr, "\n");
+        fprintf(stderr, "Read function definition:");
+        FnIR->print(errs());
+        fprintf(stderr, "\n");
     }
   } else {
     // Skip token for error recovery.
