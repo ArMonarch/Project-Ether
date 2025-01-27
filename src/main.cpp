@@ -321,7 +321,7 @@ static int GetTokPrecedence() {
 
 /// LogError* - These are little helper functions for error handling.
 std::unique_ptr<ExprAST> LogError(const char *Str) {
-  fprintf(stderr, "Error: %s\n", Str);
+  fprintf(stderr, "\x1B[1;38;2;233;86;120mError:\x1B[0m %s\n", Str);
   return nullptr;
 }
 
@@ -1118,11 +1118,12 @@ static void InitializeModuleAndPassManager() {
 
 static void HandleDefinition() {
   if (auto FnAST = ParseDefinition()) {
-    if (auto *FnIR = FnAST->codegen()) {
+    if (auto *FnIR = FnAST -> codegen()) {
       // fprintf(stderr, "Read function definition:");
-      fprintf(stderr, "Read function:\n");
+      fprintf(stderr, "\n\x1B[1;38;2;41;211;152mRead function:\n");
+      fprintf(stderr, "\x1B[1;38;2;38;187;217m");
       FnIR->print(errs());
-      fprintf(stderr, "\n");
+      fprintf(stderr, "\x1B[0m\n");
     }
   } else {
     // Skip token for error recovery.
@@ -1133,9 +1134,10 @@ static void HandleDefinition() {
 static void HandleExtern() {
   if (auto ProtoAST = ParseExtern()) {
     if (auto *FnIR = ProtoAST->codegen()) {
-      fprintf(stderr, "Read extern: ");
+      fprintf(stderr, "\n\x1B[1;38;2;41;211;152mRead extern:\n");
+      fprintf(stderr, "\x1B[1;38;2;250;183;149m");
       FnIR->print(errs());
-      fprintf(stderr, "\n");
+      fprintf(stderr, "\x1b[0m\n");
       FunctionProtos[ProtoAST->getName()] = std::move(ProtoAST);
     }
   } else {
@@ -1211,9 +1213,9 @@ int main() {
   BinopPrecedence['*'] = 40; // highest.
 
   // Prime the first token.
-  fprintf(stderr, "Etherc v0.1.1 (unstable)\n");
-  fprintf(stderr, "Exit using <Ctrl-d> or <Ctrl-c>\n");
-  fprintf(stderr, "\n=> ");
+  fprintf(stderr, "Etherc \x1B[1;38;2;41;211;152mv0.1.1\x1B[0m \x1B[1;38;2;233;86;120m(unstable)\x1B[0m\n");
+  fprintf(stderr, "Exit \x1B[1;38;2;38;187;217m<Ctrl-d>\x1b[0m or \x1B[1;38;2;233;86;120m<Ctrl-c>\x1B[0m\n");
+  fprintf(stderr, "\n\x1B[1;38;2;38;187;217m=>\x1b[0m ");
   // fprintf(stderr, "ready> ");
   getNextToken();
 
@@ -1252,7 +1254,7 @@ int main() {
 
   TheModule->setDataLayout(TheTargetMachine->createDataLayout());
 
-  auto Filename = "output.o";
+  auto Filename = "build.o";
   std::error_code EC;
   raw_fd_ostream dest(Filename, EC, sys::fs::OF_None);
 

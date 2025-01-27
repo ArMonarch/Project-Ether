@@ -1,3 +1,6 @@
 #!/bin/bash
 
-export PATH="$PATH:$HOME/dev/Project-Ether/build"
+if [ -f "./build/etherc" ] ; then
+    export PATH="$PATH:$(pwd)/build"
+    # echo "PATH updated: $PATH"
+fi
