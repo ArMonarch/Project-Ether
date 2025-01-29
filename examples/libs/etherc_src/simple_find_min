@@ -1,0 +1,5 @@
+fn min(valA valB)
+    if valA < valB then
+        valA
+    else
+        valB;

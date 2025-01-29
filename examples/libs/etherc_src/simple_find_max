@@ -1,0 +1,5 @@
+fn max(valA valB)
+    if valB < valA then
+        valA
+    else
+        valB;

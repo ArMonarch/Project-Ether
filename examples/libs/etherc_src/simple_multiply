@@ -1,0 +1,2 @@
+fn multiply (valA valB)
+    valA * valB;
