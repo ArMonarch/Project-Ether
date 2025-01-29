@@ -1,0 +1,15 @@
+bin = [
+    {name = "add", path = "src/simple_add.rs"},
+    {name = "sub", path = "src/simple_sub.rs"},
+    {name = "multiply", path = "src/simple_multiply.rs"},
+    {name = "find_max", path = "src/simple_find_max.rs"},
+    {name = "find_min", path = "src/simple_find_min.rs"},
+
+]
+
+[package]
+name = "examples"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
